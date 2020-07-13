@@ -6,7 +6,7 @@ import { DocumentoComponent } from './documento/documento.component';
 import { ListaDocumentosComponent } from './lista-documentos/lista-documentos.component';
 import { DocumentosComponent } from './documentos.component';
 import { SocketIoModule } from 'ngx-socket-io';
-//import { WebServicesService } from '../servicios';
+import { WebServicesService } from '../servicios/web-service.service';
 
 
 @NgModule({
@@ -18,6 +18,6 @@ import { SocketIoModule } from 'ngx-socket-io';
     DocumentosComponent,
     SocketIoModule
   ],
-  //providers: [WebServicesService]
+  providers: [WebServicesService]
 })
 export class DocumentosModule { }
