@@ -10,13 +10,16 @@ import { WebServicesService } from '../servicios/web-service.service';
 
 
 @NgModule({
-  declarations: [DocumentoComponent, ListaDocumentosComponent],
+  declarations: [
+  DocumentoComponent, 
+  ListaDocumentosComponent, 
+  DocumentosComponent],
   imports: [
     CommonModule,
     DocumentosRoutingModule,
     FormsModule,
-    DocumentosComponent,
-    SocketIoModule
+    SocketIoModule,
+ 
   ],
   providers: [WebServicesService]
 })

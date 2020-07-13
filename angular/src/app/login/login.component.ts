@@ -37,7 +37,7 @@ login():void{
     this.loginServices.login(datalogin).subscribe((data:Data)=>{
   if(data.transaccion){
     if(this.permisos.decodificarToken(data.token)){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/menu']);
     }else{
      email='';
       password='';
