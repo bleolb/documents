@@ -4,7 +4,7 @@ const fs = require('fs'),
     path = require('path'),
     bcrypt = require('bcrypt'),
     jwt = require("jsonwebtoken"),
-    usuarios_model = require('../modelos/usuarios');
+    usuarios_model = require('../modelos/usuario');
 
 let getUsuario = (req, res) => {
     usuarios_model.find()
@@ -90,9 +90,11 @@ let login = (req, res) => {
     let { data } = req.body,
         email = data.email,
         password = data.password;
+        console.log(data)
 
     usuarios_model.find({ email })
         .then((data) => {
+            console.log(data[0].email)
             if (data[0].email === email) {
                 let token,
                     tokenBody = {

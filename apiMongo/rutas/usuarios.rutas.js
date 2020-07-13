@@ -2,7 +2,7 @@
 'use strict'
 const express = require('express');
 let api = express.Router(),
-    usuarioControl = require('../controllers/usuario.controller');
+    usuarioControl = require('../controles/usuarios.control');
 
 
 api.post ('/login',usuarioControl.login )

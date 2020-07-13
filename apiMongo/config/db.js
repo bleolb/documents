@@ -7,7 +7,7 @@ const mongoose = require('mongoose'),
         HOST_DB,
         NAME_DB
     } = process.env
-mongoUrl = `mongodb+srv://${USER_DB}:${PASS_DB}@${HOST_DB}/${NAME_DB}?retryWrites=true&w=majority`
+mongoUrl = `mongodb://${USER_DB}:${PASS_DB}@${HOST_DB}/${NAME_DB}?retryWrites=true&w=majority`
 let connection
 let connectionDb = async() => {
     if (connection) return connection
