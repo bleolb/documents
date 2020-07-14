@@ -6,4 +6,5 @@ export class Usuarios {
     createAt?:string;
     passw:string;
     sessionID?:string;
+    email?:string
 }

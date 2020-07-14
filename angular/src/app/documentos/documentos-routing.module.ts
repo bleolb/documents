@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DocumentoComponent } from './documento/documento.component'
-
+import { DocumentoComponent } from './documento/documento.component';
+import { ListaDocumentosComponent} from './lista-documentos/lista-documentos.component';
+import { DocumentosComponent } from './documentos.component'
+import { from } from 'rxjs';
 
 const routes: Routes = [
-  { path:'', component:DocumentoComponent }
+  { path:'', component:DocumentoComponent },
+  { path: '', component:ListaDocumentosComponent},
+  { path: '', component:DocumentosComponent}
+
 ];
 
 @NgModule({

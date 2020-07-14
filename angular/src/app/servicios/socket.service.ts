@@ -8,7 +8,7 @@ import { Socket } from 'ngx-socket-io'
 export class SocketService extends Socket{
   constructor(private permisos:PermisosService) { 
     super({url:'http://localhost:27017',options:{
-      query:`token=${permisos.getToken()}&sessionID=${permisos.getSessionId()}`
+      query: `token=${sessionStorage.getItem("token")}&sessionID=${permisos.getSessionId()}`,
       }
     })
   }

@@ -5,6 +5,7 @@ import { DocumentosService } from '../../servicios/documentos.service';
 import jwt_decode from 'jwt-decode';
 import { PermisosService } from '../../servicios/permisos.service';
 import { Documentos } from '../../modelo/documentos';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,12 +21,13 @@ export class DocumentoComponent implements OnInit {
 
   constructor(
     private docsService: DocumentosService,
-    private permissions: PermisosService
+    private permissions: PermisosService,
+    private router: Router
   ) {}
   
 
   ngOnInit(): void {
-    this._docSubscribe = this.docsService.dataActual
+    this._docSubscribe = this.docsService.currentDoc
       .pipe(
         startWith({
           id: '',
@@ -53,4 +55,8 @@ export class DocumentoComponent implements OnInit {
 
     this.document.userName = decoded.data.name;
   }
+  goDocumentosLista() {
+    this.router.navigate(['/documentos/documentos-lista']);
+  }
 }
+

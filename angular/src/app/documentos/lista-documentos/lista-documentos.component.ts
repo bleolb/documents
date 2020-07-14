@@ -21,35 +21,35 @@ export class ListaDocumentosComponent implements  OnInit , OnDestroy{
 
 
   ngOnInit() {
-    this.docs = this.documentosService.documents;
-    this._docSubscribe = this.documentosService.dataActual.subscribe(
+    this.docs = this.documentosService.docs;
+    this._docSubscribe = this.documentosService.currentDoc.subscribe(
       (doc) => ((this.currentDoc = doc.id), (this.docAuth = doc))
     );
   }
   ngOnDestroy(){
     this._docSubscribe.unsubscribe();
   } 
-  getDoc(id: string) {
+  getDoc = async (id: string) => {
     this.documentosService.getDoc(id);
-  
-    let roomName = prompt('Access name');
-  
+
+    let roomName = prompt('Nombre de sala');
+
     if (this.docAuth.roomName === roomName) {
-      let roomPassword = prompt('Room password');
-  
+      let roomPassword = prompt('Contraseña de sala');
       if (this.docAuth.roomPassword === roomPassword) {
         this.documentosService.getDoc(id);
+        this.router.navigate(['/documentos/documento']);
       } else {
-        alert('paswword incorrecto');
+        alert('Contraseña Incorrecta');
       }
     } else {
-      alert('no existe la sala');
+      alert(`Error nombre de sala`);
     }
-  }
+  };
   
   addDoc() {
-    let roomName = prompt('Nombre del documento?'),
-      roomPassword = prompt('Password?');
+    let roomName = prompt('Nombre del documento:'),
+      roomPassword = prompt('Password:');
   
     this.documentosService.addDoc({
       id: '',
