@@ -95,8 +95,7 @@ let login = (req, res) => {
     usuarios_model.find({ email })
         .then((data) => {
             console.log(data[0].email)
-            if (data[0].email === email) {
-                let token,
+                   let token,
                     tokenBody = {
                         nombre: data[0].nombre,
                         email: data[0].email,
@@ -104,29 +103,28 @@ let login = (req, res) => {
                         sessionID: data[0].sessionID,
                     };
                 bcrypt.compareSync(password, data[0].passw) ?
-                    ((token = jwt.sign({ data: tokenBody }, process.env.KEY_JWT, console.log(token), {
+                    ((token = jwt.sign({ data: tokenBody }, process.env.KEY_JWT, {
                             algorithm: "HS256",
                             expiresIn: 60000,
                         })),
                         res.status(200).json({
                             transaccion: true,
                             data: data,
-                            msg: "User OK",
+                            msg: "Usuario aceptado",
                             token,
                         })) :
                     res.status(404).json({
                         transaccion: false,
                         data: null,
-                        msg: "Incorrect password",
+                        msg: "Password Incorrecto",
                         token: null,
                     });
             }
-        })
-        .catch((err) => {
+        ).catch((err) => {
             res.status(404).json({
                 transaccion: false,
                 data: null,
-                msg: "Email not found",
+                msg: "Email inválido",
             });
         });
 };

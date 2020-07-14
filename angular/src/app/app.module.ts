@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { SocketIoModule } from 'ngx-socket-io'
-import { WebServicesService } from './servicios/web-service.service'
+import { SocketService } from './servicios/socket.service'
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { WebServicesService } from './servicios/web-service.service'
     ReactiveFormsModule,
     SocketIoModule
   ],
-  providers: [WebServicesService],
+  providers: [SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,8 +7,8 @@ import { from } from 'rxjs';
 
 const routes: Routes = [
   { path:'', component:DocumentoComponent },
-  { path: '', component:ListaDocumentosComponent},
-  { path: '', component:DocumentosComponent}
+  { path: 'lista', component:ListaDocumentosComponent},
+  { path: 'documento', component:DocumentosComponent}
 
 ];
 

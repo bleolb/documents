@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 import { DocumentosService } from '../../servicios/documentos.service';
-import { PermisosService } from '../../servicios/permisos.service';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,7 +17,7 @@ export class ListaDocumentosComponent implements  OnInit , OnDestroy{
   private _docSubscribe: Subscription;
   constructor(private documentosService: DocumentosService, 
     private router: Router,
-    private servicesPermisos: PermisosService) { }
+    ) { }
 
 
   ngOnInit() {

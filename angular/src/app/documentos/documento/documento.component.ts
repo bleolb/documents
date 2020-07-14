@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 import { DocumentosService } from '../../servicios/documentos.service';
@@ -8,14 +8,15 @@ import { Documentos } from '../../modelo/documentos';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-documento',
   templateUrl: './documento.component.html',
   styleUrls: ['./documento.component.scss']
 })
-export class DocumentoComponent implements OnInit {
+export class DocumentoComponent implements OnInit, OnDestroy {
 
-    currentUserName: Observable<string>;
+  currentUserName: Observable<string>;
   document: Documentos;
   private _docSubscribe: Subscription;
 
@@ -45,17 +46,10 @@ export class DocumentoComponent implements OnInit {
   }
 
   editDoc() {
-    this._getuser();
-    this.docsService.editDoc(this.document);
+      this.docsService.editDoc(this.document);
   }
 
-  private _getuser() {
-    let token = this.permissions.getToken();
-    let decoded = jwt_decode(token);
-
-    this.document.userName = decoded.data.name;
-  }
-  goDocumentosLista() {
+ goDocumentosLista() {
     this.router.navigate(['/documentos/documentos-lista']);
   }
 }

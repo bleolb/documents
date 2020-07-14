@@ -19,6 +19,7 @@ export class PermisosService {
   }
   decodificarToken(token:string):boolean{
     const decoded = jwt_decode(token);
+    console.log(decoded)
     if(decoded){
       this.token||null;
       this.userLogin=decoded.data||null;

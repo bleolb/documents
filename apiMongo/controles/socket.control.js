@@ -9,22 +9,17 @@ let gestionDocumentos = (http) => {
     io.use(socketJwt.authorize({
         secret : process.env.KEY_JWT,
         handshake : true
-    }))
+    }));
 
-    io.use(socketJwt.authorize({
-        secret : process.env.KEY_JWT,
-        handshake : true
-    }))
-
-    const gestionDatos = {}
-    io.on('connection', socket => {
+      const gestionDatos = {}
+        io.on('connection', socket => {
         let anteriorId
-        console.log(socket.handshake.password)
         const safeJoin = actualId => {
         //salir de la sala
         socket.leave(anteriorId)
         //unirme a sala
-        socket.join(actualId)
+        socket.join(actualId);
+        anteriorId=actualId
         }
       
         socket.on('getDoc', docId => {
@@ -32,16 +27,15 @@ let gestionDocumentos = (http) => {
             socket.emit('gestionDato', gestionDatos[docId])
         })
         socket.on('addDoc', doc => {
-            if (doc.psw==='1234'){ 
-            let salas = Object.keys(gestionDatos)
-            let numeroSalas = salas.length +1
-            let nombreSala = `documento ${numeroSalas}`
-            doc.id = nombreSala
+            let room = Object.keys(gestionDatos)
+            let numberRoom = room.length +1
+            let roomName = `documento ${numberRoom}`
+            doc.id = roomName
             safeJoin(doc.id)
             gestionDatos[doc.id] = doc
             io.emit('gestionDatos', Object.keys(gestionDatos))
             socket.emit('gestionDato', doc)
-        }
+        
         })
         socket.on('editDoc', doc => {
             gestionDatos[doc.id] = doc

@@ -4,22 +4,20 @@
 const jwt = require('jsonwebtoken')
 
 
-let autentificar = (req, res, next) => {
+let Autentificar = (req, res, next) => {
     let token = req.headers.authorization || null
     jwt.verify(token, req.sessionID, (err, decode) => {
         if (err) {
-            console.log(req.sessionID)
-            console.log(err)
-            return res.status(404).json({
-                data: null,
+                return res.status(404).json({
+                data: err,
                 msg: 'Token Inválido'
             })
         } else {
             reqreq.decode = decode;
 
-            let token = jwt.sign({ data: decode.data }, process.env.KEY_JWT, {
+            let token = jwt.sign({ data: decode.data }, req.sessionID, {
                 algorithm: "HS256",
-                expiresIn: 300,
+                expiresIn: 6000,
             });
 
             req.token = token;
@@ -29,5 +27,5 @@ let autentificar = (req, res, next) => {
     });
 }
 module.exports = {
-    autentificar
+    Autentificar
 }
