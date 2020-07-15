@@ -17,14 +17,14 @@ export class DocumentosService {
   }
 
   addDoc(doc) {
-    // if (this.socket.ioSocket.connected) {
+     if (this.socket.ioSocket.connected) {
       this.socket.emit('addDoc', doc);
-    // } else {
-    //   alert('Invalid token');
-    // }
+     } else {
+       alert('Invalid token');
+     }
   }
   editDoc(doc: Documentos) {
     this.socket.emit('editDoc', doc);
   }
- 
+
 }
